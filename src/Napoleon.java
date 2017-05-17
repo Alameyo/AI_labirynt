@@ -27,7 +27,7 @@ public class Napoleon extends Point {
 
 	public char[][] makeTurn() {
 
-		nextMove(symMap, actualTurn);
+		nextMove();
 		actualTurn += 1;
 		return symMap;
 	}
@@ -40,17 +40,17 @@ public class Napoleon extends Point {
 	public static void increaseChances(int turn, int way) {
 		for (int i = 0; i < 4; i++) {
 			if (i == way) {
-				getMoveChances()[turn][i] += 5;
+				moveChances[turn][i] += 5;
 			} else {
-				getMoveChances()[turn][i] -= 2;
-				if (getMoveChances()[turn][i] < 0) {
-					getMoveChances()[turn][i] = 0;
+				moveChances[turn][i] -= 2;
+				if (moveChances[turn][i] < 0) {
+					moveChances[turn][i] = 0;
 				}
 			}
 		}
 	}
 
-	private void nextMove(char[][] symMap, int turn) {
+	private void nextMove() {
 		int sum = 0;
 		int random;
 		for (int chance : getMoveChances()[actualTurn]) {
@@ -59,15 +59,15 @@ public class Napoleon extends Point {
 		int goodWay = 0;
 		random = rand.nextInt(sum);
 		int amount = 0;
-		for (int i = 0; i < getMoveChances()[turn].length; i++) {
-			if (random <= getMoveChances()[turn][i] + amount) {
+		for (int i = 0; i < moveChances[actualTurn].length; i++) {
+			if (random <= moveChances[actualTurn][i] + amount) {
 				goodWay = i;
 				break;
 			} else {
-				amount += getMoveChances()[turn][i];
+				amount += moveChances[actualTurn][i];
 			}
 		}
-		moveMap[turn] = goodWay; // save to history of turns
+		moveMap[actualTurn] = goodWay; // save to history of turns
 		moveMap(goodWay); // move character on map
 	}
 

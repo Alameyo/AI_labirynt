@@ -75,7 +75,7 @@ public class Main {
 					symMap = nap.makeTurn();
 
 					System.out.println("\n Iteretion:  " + i + " with ID " + Napoleon.number + "\n");
-					Utils.drawMap(symMap);
+					Utils.drawMap(nap.getSymMap());
 				}
 				for (int j = 0; j < nap.getMoveMap().length; j++) {
 					System.out.print("Moves:  " + nap.getMoveMap()[j] + " ");
