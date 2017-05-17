@@ -14,10 +14,13 @@ public class Napoleon extends Point {
 
 	private int[] moveMap;
 	private Random rand;
-
+	
+	private int id;
 
 	Napoleon(char[][] symMap) {
+		setId(number);
 		number += 1;
+		
 		actualTurn = 0;
 		rand = new Random();
 		this.symMap = symMap;
@@ -130,7 +133,15 @@ public class Napoleon extends Point {
 		return moveChances;
 	}
 
-	public static void setMoveChances(int[][] moveChances) {
-		Napoleon.moveChances = moveChances;
+	public static void setMoveChances(int i, int j, int value) {
+		Napoleon.moveChances[i][j] = value;
+	}
+
+	public int getId() {
+		return id;
+	}
+	//up3//down2//right1//left0
+	public void setId(int id) {
+		this.id = id;
 	}
 }
